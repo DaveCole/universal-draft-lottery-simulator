@@ -4,6 +4,7 @@ import { Button } from "./Button";
 // @ts-expect-error
 import MyWorker from "./worker?worker&inline";
 import { Table } from "./Table";
+import { DraftBoard } from "./DraftBoard";
 
 const presets = [
 	{
@@ -71,6 +72,13 @@ const presets = [
 		chances: [185, 135, 115, 95, 85, 75, 65, 60, 50, 35, 30, 25, 20, 15, 10],
 	},
 	{
+		key: "nhl2021-gpy",
+		title: "NHL 2021-present - Go Puck Yourself",
+		description: "Weighted lottery for the all 12 teams.",
+		numToPick: 12,
+		chances: [185, 135, 115, 95, 85, 75, 65, 60, 50, 35, 30, 25],
+	},
+	{
 		key: "mlb2022",
 		title: "MLB 2022-present",
 		description:
@@ -112,6 +120,9 @@ export const App = () => {
 	const [chances, setChances] = useState(preset?.chances ?? []);
 	const [numToPick, setNumToPick] = useState(preset?.numToPick ?? 0);
 	const [lotteryResults, setLotteryResults] = useState<number[] | undefined>();
+	const [animatedResults, setAnimatedResults] = useState<
+		number[] | undefined
+	>();
 	const [names, setNames] = useState(() => getDefaultNames(chances.length));
 	const [loadingProbs, setLoadingProbs] = useState(true);
 	const [probs, setProbs] = useState<number[][] | undefined>(); // undefined on initial load only
@@ -144,6 +155,7 @@ export const App = () => {
 
 	const onAddTeam = (direction: "top" | "bottom") => () => {
 		setLotteryResults(undefined);
+		setAnimatedResults(undefined);
 
 		if (direction === "bottom") {
 			setChances([...chances, chances[chances.length - 1] ?? 1]);
@@ -167,6 +179,7 @@ export const App = () => {
 
 	const onClearTeams = () => {
 		setLotteryResults(undefined);
+		setAnimatedResults(undefined);
 		setChances([]);
 		setNames([]);
 		setPresetKey("custom");
@@ -195,6 +208,10 @@ export const App = () => {
 		</>
 	);
 
+	const hideDraftBoard = () => {
+		setAnimatedResults(undefined);
+	};
+
 	return (
 		<>
 			<div
@@ -215,6 +232,7 @@ export const App = () => {
 
 							if (preset) {
 								setLotteryResults(undefined);
+								setAnimatedResults(undefined);
 								setPresetKey(preset.key);
 								setChances(preset.chances);
 								setNumToPick(preset.numToPick);
@@ -260,6 +278,7 @@ export const App = () => {
 						min={0}
 						onChange={(event) => {
 							setLotteryResults(undefined);
+							setAnimatedResults(undefined);
 							setPresetKey("custom");
 							const number = (event.target as any).valueAsNumber;
 							if (number < 0) {
@@ -305,6 +324,35 @@ export const App = () => {
 							className="ml-2"
 							onClick={() => {
 								setLotteryResults(undefined);
+								setAnimatedResults(undefined);
+							}}
+							outline
+							disabled={chances.length === 0}
+						>
+							Clear Sim
+						</Button>
+					) : null}
+				</div>
+				<div className="mt-2 sm:mt-0">
+					<Button
+						variant="success"
+						onClick={() => {
+							const results = simLottery(chances, numToPick);
+							setLotteryResults(results);
+							setAnimatedResults(results);
+						}}
+						disabled={chances.length === 0}
+					>
+						Perform Draft Lottery
+					</Button>
+
+					{lotteryResults ? (
+						<Button
+							variant="danger"
+							className="ml-2"
+							onClick={() => {
+								setLotteryResults(undefined);
+								setAnimatedResults(undefined);
 							}}
 							outline
 							disabled={chances.length === 0}
@@ -320,18 +368,40 @@ export const App = () => {
 			) : (
 				<>
 					{chances.length > 0 ? (
-						<div className="mt-2 overflow-x-auto">
-							<Table
-								chances={chances}
-								loadingProbs={loadingProbs}
-								lotteryResults={lotteryResults}
-								names={names}
-								probs={probs}
-								setChances={setChances}
-								setLotteryResults={setLotteryResults}
-								setNames={setNames}
-								setPresetKey={setPresetKey}
-							/>
+						<div className="container">
+							<div
+								className="mt-2 overflow-x-auto"
+								style={animatedResults ? {} : {}}
+							>
+								<Table
+									chances={chances}
+									loadingProbs={loadingProbs}
+									lotteryResults={lotteryResults}
+									names={names}
+									probs={probs}
+									setChances={setChances}
+									setLotteryResults={setLotteryResults}
+									setNames={setNames}
+									setPresetKey={setPresetKey}
+								/>
+							</div>
+							<div
+								className="mt-2 overflow-x-auto"
+								style={animatedResults ? {} : { visibility: "hidden" }}
+							>
+								<DraftBoard
+									chances={chances}
+									loadingProbs={loadingProbs}
+									lotteryResults={lotteryResults}
+									names={names}
+									probs={probs}
+									setChances={setChances}
+									setLotteryResults={setLotteryResults}
+									setNames={setNames}
+									setPresetKey={setPresetKey}
+									hideDraftBoard={hideDraftBoard}
+								/>
+							</div>
 						</div>
 					) : (
 						<div className="my-3">You should add some teams...</div>

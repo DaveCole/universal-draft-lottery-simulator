@@ -23,4 +23,270 @@
 	h1 {
 		font-family: Kanit;
 	}
+
+	.overlay {
+		opacity: 1;
+		background-color: #333;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		z-index: 1000;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.draftboard {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		padding: 20px;
+		font-size: 36px;
+		font-weight: 700;
+		width: 50%;
+	}
+
+	.draftboard__title {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		font-size: 48px;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+
+	.draftboard__results {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		background-color: #666;
+		padding: 10px;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+	}
+
+	.draftboard__row {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		height: 60px;
+		border: 1px solid #999;
+		z-index: 10;
+	}
+
+	.draftboard__row-1 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-2 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-3 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-4 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-5 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-6 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-7 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-8 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-9 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-10 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-11 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-12 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-13 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+	.draftboard__row-14 {
+		transition: opacity 0.5s;
+		opacity: 0;
+	}
+
+	.draftboard__row-1.show {
+		opacity: 1;
+	}
+	.draftboard__row-2.show {
+		opacity: 1;
+	}
+	.draftboard__row-3.show {
+		opacity: 1;
+	}
+	.draftboard__row-4.show {
+		opacity: 1;
+	}
+	.draftboard__row-5.show {
+		opacity: 1;
+	}
+	.draftboard__row-6.show {
+		opacity: 1;
+	}
+	.draftboard__row-7.show {
+		opacity: 1;
+	}
+	.draftboard__row-8.show {
+		opacity: 1;
+	}
+	.draftboard__row-9.show {
+		opacity: 1;
+	}
+	.draftboard__row-10.show {
+		opacity: 1;
+	}
+	.draftboard__row-11.show {
+		opacity: 1;
+	}
+	.draftboard__row-12.show {
+		opacity: 1;
+	}
+	.draftboard__row-13.show {
+		opacity: 1;
+	}
+	.draftboard__row-14.show {
+		opacity: 1;
+	}
+
+	.draftboard__row-pick {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 60px;
+		height: 60px;
+		background-color: #fff;
+		color: #000;
+		font-size: 20px;
+		font-weight: 700;
+		border: 1px solid #ccc;
+	}
+
+	.draftboard__row-team {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		height: 70px;
+		padding-left: 20px;
+		text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+	}
+
+	.draftboard__row__player__name {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: 200px;
+		height: 50px;
+	}
+
+	.basket {
+		transition: opacity 0.5s;
+		opacity: 1;
+	}
+	.basket.hide {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.draftboard__row-bkg-1 {
+		background: #f47a38;
+		background: linear-gradient(0deg, #c1c6c8 0%, #f47a38 100%);
+	}
+	.draftboard__row-bkg-2 {
+		background: #003087;
+		background: linear-gradient(0deg, #ffffff 0%, #003087 100%);
+	}
+	.draftboard__row-bkg-3 {
+		background: #6f263d;
+		background: linear-gradient(0deg, #a2aaad 0%, #6f263d 100%);
+	}
+	.draftboard__row-bkg-4 {
+		background: #111111;
+		background: linear-gradient(0deg, #a2aaad 0%, #111111 100%);
+	}
+	.draftboard__row-bkg-5 {
+		background: #002868;
+		background: linear-gradient(0deg, #ffffff 0%, #002868 100%);
+	}
+	.draftboard__row-bkg-6 {
+		background: #ce1126;
+		background: linear-gradient(0deg, #ffffff 0%, #ce1126 100%);
+	}
+	.draftboard__row-bkg-7 {
+		background: #006d75;
+		background: linear-gradient(0deg, #ffffff 0%, #006d75 100%);
+	}
+	.draftboard__row-bkg-8 {
+		background: #ffb81c;
+		background: linear-gradient(0deg, #ffb81c 0%, #000000 100%);
+	}
+	.draftboard__row-bkg-9 {
+		background: #99d9d9;
+		background: linear-gradient(0deg, #99d9d9 0%, #001628 100%);
+	}
+	.draftboard__row-bkg-10 {
+		background: #154734;
+		background: linear-gradient(0deg, #ddcba4 0%, #154734 100%);
+	}
+	.draftboard__row-bkg-11 {
+		background: #af1e2d;
+		background: linear-gradient(0deg, #ffffff 0%, #af1e2d 100%);
+	}
+	.draftboard__row-bkg-12 {
+		background: #ff4c00;
+		background: linear-gradient(0deg, #ffffff 0%, #ff4c00 100%);
+	}
+	.draftboard__row-bkg-13 {
+		background: #00539b;
+		background: linear-gradient(0deg, #f47d30 0%, #00539b 100%);
+	}
+	.draftboard__row-bkg-14 {
+		background: #006847;
+		background: linear-gradient(0deg, #8f8f8c 0%, #006847 100%);
+	}
+	.draftboard__row-bkg-15 {
+		background: #00539b;
+		background: linear-gradient(0deg, #f47d30 0%, #00539b 100%);
+	}
+	.draftboard__row-bkg-16 {
+		background: #006847;
+		background: linear-gradient(0deg, #8f8f8c 0%, #006847 100%);
+	}
 }
