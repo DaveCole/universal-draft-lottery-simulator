@@ -68,6 +68,7 @@ const rowClasses = [
 
 export const DraftBoard = (props: DraftBoardProps) => {
 	const [revealRow, setRevealRow] = useState(14);
+	let soundPlayed = false;
 	/*
 	const [alpha0, setAlpha0] = useState(0);
 	const [alpha1, setAlpha1] = useState(0.0);
@@ -95,9 +96,12 @@ export const DraftBoard = (props: DraftBoardProps) => {
 		if (props.lotteryResults) {
 			setTimeout(() => {
 				setTriggerAnimation(true);
-				console.log("triggered animation");
 			}, 1000);
-			console.log("got results");
+			if (!soundPlayed) {
+				let audio = new Audio("success-fanfare-trumpets-6185.mp3");
+				audio.play();
+				soundPlayed = true;
+			}
 		} else {
 			setTriggerAnimation(false);
 			setRevealRow(14);
@@ -106,7 +110,8 @@ export const DraftBoard = (props: DraftBoardProps) => {
 
 	useEffect(() => {
 		if (triggerAnimation) {
-			setRevealRow(revealRow - 1);
+			// @ts-ignore
+			setRevealRow(props.lotteryResults?.length);
 		}
 	}, [triggerAnimation]);
 
@@ -115,8 +120,7 @@ export const DraftBoard = (props: DraftBoardProps) => {
 			console.log(`revealRow: ${revealRow}`);
 			setTimeout(() => {
 				setRevealRow(revealRow - 1);
-				console.log("triggered animation");
-			}, 1000);
+			}, 2500);
 		}
 	}, [revealRow]);
 	/*
